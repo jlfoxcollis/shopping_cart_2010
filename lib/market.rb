@@ -65,7 +65,6 @@ class Market
   end
 
   def reduce_quantity(item, quantity)
-    # total = quantity
     until quantity == 0 do
       vendors_that_sell(item).map do |vendor|
         balance = vendor.inventory[item] -= quantity

@@ -186,7 +186,6 @@ class MarketTest < MiniTest::Test
     item2 = Item.new({name: "Tomato", price: "$0.50"})
     item3 = Item.new({name: "Peach-Raspberry Nice Cream", price: "$5.30"})
     item4 = Item.new({name: "Banana Nice Cream", price: "$4.25"})
-    item5 = Item.new({name: 'Onion', price: '$0.25'})
     market = Market.new("South Pearl Street Farmers Market")
     vendor1 = Vendor.new("Rocky Mountain Fresh")
     vendor1.stock(item1, 35)
