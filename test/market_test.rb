@@ -108,7 +108,7 @@ class MarketTest < MiniTest::Test
     market.add_vendor(vendor1)
     market.add_vendor(vendor2)
     market.add_vendor(vendor3)
-    expected = ["Banana Nice Cream", "Peach-Raspberry Nice Cream", "Tomato"]
+    expected = ["Banana Nice Cream", "Peach", "Peach-Raspberry Nice Cream", "Tomato"]
 
     assert_equal expected, market.sorted_item_list
   end
