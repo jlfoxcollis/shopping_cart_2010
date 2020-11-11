@@ -39,13 +39,17 @@ class Market
     overstock
   end
 
-  def sorted_item_list
+  def item_list
     list = []
     vendors.each do |vendor|
       vendor.inventory.each do |item, quantity|
         list << item.name
       end
     end
-    list.sort.uniq
+    list
+  end
+
+  def sorted_item_list
+    item_list.sort.uniq
   end
 end
