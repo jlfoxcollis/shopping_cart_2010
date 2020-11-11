@@ -18,6 +18,12 @@ class Market
     @vendors << vendor
   end
 
+  def vendor_names
+    @vendors.map do |vendor|
+      vendor.name
+    end
+  end
+
   def total_inventory
     inventory = Hash.new {|hash, key| hash[key] = {quantity: 0, vendors: []}}
     vendors.each do |vendor|
@@ -62,5 +68,21 @@ class Market
   end
 
   def sell(item, quantity)
+    if total_inventory.include?(item) && quantity <= total_inventory[item][:quantity]
+      total = quantity
+      until total == 0 do
+        vendors_that_sell(item).map do |vendor|
+          balance = vendor.inventory[item] -= total
+          total = 0
+          if balance <= 0
+            vendor.inventory[item] += balance.abs
+            total = balance.abs
+          end
+        end
+      end
+      true
+    else
+      false
+    end
   end
 end
