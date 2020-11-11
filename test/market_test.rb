@@ -27,7 +27,7 @@ class MarketTest < MiniTest::Test
     expected = {
         item1 => {
           quantity: 100,
-          vendors: [vendor1, vendor2]
+          vendors: [vendor1, vendor3]
         },
         item2 => {
           quantity: 7,
@@ -45,4 +45,6 @@ class MarketTest < MiniTest::Test
 
     assert_equal expected, market.total_inventory
   end
+
+
 end
