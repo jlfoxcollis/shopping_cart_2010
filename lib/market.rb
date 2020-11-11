@@ -52,4 +52,7 @@ class Market
   def sorted_item_list
     item_list.sort.uniq
   end
+
+  def sell(item, quantity)
+  end
 end
