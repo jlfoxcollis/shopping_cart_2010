@@ -13,7 +13,6 @@ class Market
     Date.today.strftime("%d/%m/%Y")
   end
 
-
   def add_vendor(vendor)
     @vendors << vendor
   end
@@ -54,13 +53,11 @@ class Market
   end
 
   def item_list
-    list = []
-    vendors.each do |vendor|
-      vendor.inventory.each do |item, quantity|
-        list << item.name
+    vendors.flat_map do |vendor|
+      vendor.inventory.flat_map do |item, quantity|
+        item.name
       end
     end
-    list
   end
 
   def sorted_item_list
