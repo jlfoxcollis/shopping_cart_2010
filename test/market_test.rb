@@ -3,6 +3,7 @@ require 'minitest/pride'
 require './lib/vendor'
 require './lib/item'
 require './lib/market'
+require 'mocha/minitest'
 
 class MarketTest < MiniTest::Test
 
@@ -138,7 +139,14 @@ class MarketTest < MiniTest::Test
 
   def test_date
     market = Market.new("South Pearl Street Farmers Market")
+
     assert_equal Date.today.strftime("%d/%m/%Y"), market.date
+  end
+
+  def test_other_date
+    market = Market.new("South Pearl Street Farmers Market")
+    Date.stubs(:today => Date.parse("20200224"))
+    assert_equal "24/02/2020", market.date
   end
 
   def test_sell
