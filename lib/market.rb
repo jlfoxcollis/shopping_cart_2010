@@ -64,19 +64,24 @@ class Market
     item_list.sort.uniq
   end
 
-  def sell(item, quantity)
-    if total_inventory.include?(item) && quantity <= total_inventory[item][:quantity]
-      total = quantity
-      until total == 0 do
-        vendors_that_sell(item).map do |vendor|
-          balance = vendor.inventory[item] -= total
-          total = 0
-          if balance <= 0
-            vendor.inventory[item] += balance.abs
-            total = balance.abs
-          end
+  def reduce_quantity(item, quantity)
+    # total = quantity
+    until quantity == 0 do
+      vendors_that_sell(item).map do |vendor|
+        balance = vendor.inventory[item] -= quantity
+        quantity = 0
+        if balance <= 0
+          vendor.inventory[item] += balance.abs
+          quantity = balance.abs
         end
       end
+    end
+    quantity
+  end
+
+  def sell(item, quantity)
+    if total_inventory.include?(item) && quantity <= total_inventory[item][:quantity]
+      reduce_quantity(item, quantity)
       true
     else
       false
