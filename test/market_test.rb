@@ -136,6 +136,11 @@ class MarketTest < MiniTest::Test
     assert_equal expected, market.item_list
   end
 
+  def test_date
+    market = Market.new("South Pearl Street Farmers Market")
+    assert_equal Date.today.strftime("%d/%m/%Y"), market.date
+  end
+
   def test_sell
     item1 = Item.new({name: "Peach", price: "$0.75"})
     item2 = Item.new({name: "Tomato", price: "$0.50"})
